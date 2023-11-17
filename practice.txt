@@ -1,0 +1,62 @@
+// int *partition(int *begin, int *end)
+// {
+// 	int *low  = begin;
+
+// 	int *high = end;
+
+// 	int *pivot = low + (high - low)/2;
+
+// 	while (true)
+// 	{
+// 		while (*low < pivot)
+// 			++low;
+// 		do {
+// 			--high;
+// 		} while (pivot < *high);
+
+// 		if (low >= high)
+// 		{
+// 			return (low);
+// 		}
+
+// 		swap(low, high);
+
+// 		++low;
+// 	}
+// }
+
+// void qsort(int *begin, int *end)
+// {
+// 	int *p;
+
+// 	if (end - begin < 2)
+// 		return;
+
+// 	p = partition(begin, end);
+
+// 	qsort(begin, p);
+// 	qsort(p, end);
+// }
+
+
+int *high = end - 1;
+
+	int pivot = *high;
+
+	int *i = begin;
+
+	int *j;
+
+	for (j = begin; j < high; ++j)
+	{
+
+		if (*j <= pivot)
+		{
+			swap(i, j);
+			++i;
+		}
+	}
+
+	swap(i + 1, high);
+
+	return (i + 1);

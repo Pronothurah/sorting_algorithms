@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+#include <stdbool.h>
 
 
 /**
@@ -36,5 +37,10 @@ void insertion_sort_list(listint_t **list);
 size_t select_minimum(int *arr, size_t n, int i);
 void swap(int *a, int *b);
 void selection_sort(int *array, size_t size);
+
+/*Quick Sort*/
+int *lomuto_partition(int *begin, int *end);
+void quick_sort(int *array, size_t size);
+
 
 #endif /* SORT_H */
