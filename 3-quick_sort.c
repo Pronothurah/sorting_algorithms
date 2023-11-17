@@ -2,8 +2,8 @@
 
 /**
 * lomuto_partition - partitions an array using the last item as pivot
-* @begin: start of array
-* @end: end of array
+* @begin: pointer to start of array
+* @end: pointer to end of array
 * Return: elements greater than the pivot are on the right side and vice versa
 */
 

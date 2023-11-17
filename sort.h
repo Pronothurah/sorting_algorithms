@@ -42,5 +42,8 @@ void selection_sort(int *array, size_t size);
 int *lomuto_partition(int *begin, int *end);
 void quick_sort(int *array, size_t size);
 
+/*Shell Sort*/
+void shell_sort(int *array, size_t size);
+
 
 #endif /* SORT_H */

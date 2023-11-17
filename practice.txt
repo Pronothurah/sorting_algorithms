@@ -60,3 +60,30 @@ int *high = end - 1;
 	swap(i + 1, high);
 
 	return (i + 1);
+
+
+void shellSort(T a[], int n)
+{
+	int incr = n / 2;
+
+	while (incr >= 1)
+	{
+		for (int i = incr; i < a.length; i++)
+
+		{
+		T insertElement = a[i];
+		int j;
+
+		for (j = i - incr;
+				j >= 0 && insertElement < a[j];
+				j -= incr)
+			a[j + incr] = a[j];
+		a[j + incr] = insertElement;
+		}
+
+		if (incr == 2)
+		incr = 1;
+		else
+		incr = (int) (incr / 2.2);
+	}
+}
