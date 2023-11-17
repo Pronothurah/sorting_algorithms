@@ -26,8 +26,15 @@ void print_array(const int *array, size_t size);
 
 void print_list(const listint_t *list);
 
+/*Bubble Sort*/
 void bubble_sort(int *array, size_t size);
 
+/*Insertion Sort*/
 void insertion_sort_list(listint_t **list);
+
+/*Selection Sort*/
+size_t select_minimum(int *arr, size_t n, int i);
+void swap(int *a, int *b);
+void selection_sort(int *array, size_t size);
 
 #endif /* SORT_H */
