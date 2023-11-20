@@ -1,60 +1,43 @@
 #include "sort.h"
 
 /**
-* select_minimum - find the index of the smallest element.
-* @arr: a pointer to an integer array
-* @n: size of array
-* @i: starting index
-*
-* Return: index to the smallest element
-*/
-
-size_t select_minimum(int *arr, size_t n, int i)
-{
-	size_t minIndex = i;
-	size_t j;
-
-	for (j = i + 1; j < n; j++)
-		if (arr[j] < arr[minIndex])
-			minIndex = j;
-	return (minIndex);
-}
-
-/**
-* swap - swaps two integers
-* @a: first integer
-* @b: second integer
-*
-* Return: void
-*/
-
-void swap(int *a, int *b)
-{
-	int tmp = *a;
-
-	*a = *b;
-	*b = tmp;
-}
-
-/**
 * selection_sort - sorts an array of integers in
 * ascending order using the Selection sort algorithm
 * @array: an array of integers
 * @size: size of array
-*
-* Return: void
 */
 
 void selection_sort(int *array, size_t size)
 {
-	size_t minIndex, i;
+	size_t minIndex, i, j;
+	int temp;
 
-	for (i = 0; i < size - 1; i++)
+	/*Array does not need to be sorted if size less than 2*/
+	if (array == NULL || size < 2)
 	{
-		minIndex = select_minimum(array, size, i);
+		return;
+	}
+
+	for (i = 0; i < size; i++)
+	{
+		minIndex = i;
+
+		for (j = i + 1; j < size; j++)
+		{
+			if (array[j] < array[minIndex])
+			{
+				minIndex = j;
+			}
+		}
+
+		/*move smallest index to begining of the unsorted list(sorted part)*/
 		if (minIndex != i)
 		{
-			swap(&array[i], &array[minIndex]);
+			temp = array[i];
+			array[i] = array[minIndex];
+			array[minIndex] = temp;
+			/*print array*/
+			print_array(array, size);
 		}
 	}
 }
