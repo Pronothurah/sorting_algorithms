@@ -11,9 +11,9 @@
 
 void bubble_sort(int *array, size_t size)
 {
-	size_t i, j;
+	size_t i;
 	int temp;
-	int swapped;
+	int swap_counter = -1;
 
 	/*Array does not need to be sorted if size less than 2*/
 	if (size < 2)
@@ -21,24 +21,25 @@ void bubble_sort(int *array, size_t size)
 		return;
 	}
 
-	for (i = 0; i < size - 1; i++)
+	/*loops until swap_counter*/
+	while (swap_counter)
 	{
-		swapped = 0;
-		for (j = 0; j < size - i - 1; j++)
+		swap_counter = 0;
+		for (i = 0; i < size - 1; i++)
 		{
-			if (array[j] > array[j + 1])
+			/*if adjacent elements not in expected order */
+			if (array[i] > array[i + 1])
 			{
-				temp = array[j];
-				array[j] = array[j + 1];
-				array[j + 1] = temp;
-				swapped = 1;
+				/*swap them */
+				temp = array[i];
+				array[i] = array[i + 1];
+				array[i + 1] = temp;
+				/*increment swap_counter*/
+				swap_counter = 1;
 
+				/*print array*/
 				print_array(array, size);
 			}
-		}
-		if (swapped == 0)
-		{
-			break;
 		}
 	}
 }
