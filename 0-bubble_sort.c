@@ -15,6 +15,12 @@ void bubble_sort(int *array, size_t size)
 	int temp;
 	int swapped;
 
+	/*Array does not need to be sorted if size less than 2*/
+	if (size < 2)
+	{
+		return;
+	}
+
 	for (i = 0; i < size - 1; i++)
 	{
 		swapped = 0;
