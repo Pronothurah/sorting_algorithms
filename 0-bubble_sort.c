@@ -5,8 +5,6 @@
 * order using the Bubble sort algorithm
 * @array: input array of integers
 * @size: size of array
-*
-* Return: void
 */
 
 void bubble_sort(int *array, size_t size)
@@ -16,7 +14,7 @@ void bubble_sort(int *array, size_t size)
 	int swap_counter = -1;
 
 	/*Array does not need to be sorted if size less than 2*/
-	if (size < 2)
+	if (array == NULL || size < 2)
 	{
 		return;
 	}
