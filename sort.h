@@ -34,12 +34,12 @@ void bubble_sort(int *array, size_t size);
 void insertion_sort_list(listint_t **list);
 
 /*Selection Sort*/
-size_t select_minimum(int *arr, size_t n, int i);
-void swap(int *a, int *b);
 void selection_sort(int *array, size_t size);
 
 /*Quick Sort*/
-int *lomuto_partition(int *begin, int *end);
+void swap(int *array, size_t size, int *a, int *b);
+size_t lomuto_partition(int *array, size_t size, ssize_t begin, ssize_t end);
+void quickSort(int *array, size_t size, ssize_t begin, ssize_t end);
 void quick_sort(int *array, size_t size);
 
 /*Shell Sort*/

@@ -1,42 +1,70 @@
 #include "sort.h"
+#include <unistd.h>
 
 /**
 * lomuto_partition - partitions an array using the last item as pivot
-* @begin: pointer to start of array
-* @end: pointer to end of array
-* Return: elements greater than the pivot are on the right side and vice versa
+* @array: input array
+* @size: size of array
+* @begin: start of sort range (lower index)
+* @end: end of sort range (higher index)
+*
+* Return: size_t
 */
 
-int *lomuto_partition(int *begin, int *end)
+size_t lomuto_partition(int *array, size_t size, ssize_t begin, ssize_t end)
 {
-	int *pivot = end - 1;
-	int *i = begin - 1;
-	int temp;
-	int *j;
+	/* select the right most element as pivot */
+	int pivot = array[end];
 
-	for (j = begin; j < pivot; ++j)
+	/* set partition index as start initially */
+	int partition_index = begin;
+
+	int i, temp;
+
+	for (i = begin; i < end; i++)
 	{
-
-		if (*j <= *pivot)
+		if (array[i] <= pivot)
 		{
-			++i;
-			if (i != j)
+			if (partition_index != i)
 			{
-				temp = *i;
-
-				*i = *j;
-				*j = temp;
+				temp = array[partition_index];
+				array[partition_index] = array[i];
+				array[i] = temp;
+				print_array(array, size);
 			}
+			partition_index++;
 		}
 	}
+	if (partition_index != end)
+	{
+		/* swap pivot with element at partion index */
+		temp = array[partition_index];
+		array[partition_index] = array[end];
+		array[end] = temp;
+		print_array(array, size);
+	}
+	return (partition_index);
+}
 
-	++i;
-	temp = *i;
+/**
+* quickSort - sorts array recursively using lomuto
+* @array: input array
+* @size: size of array
+* @begin: start of sort range (lower index)
+* @end: end of sort range (higher index)
+*/
 
-	*i = *pivot;
-	*pivot = temp;
+void quickSort(int *array, size_t size, ssize_t begin, ssize_t end)
+{
+	size_t pivot;
 
-	return (i);
+	if (begin < end)
+	{
+		pivot = lomuto_partition(array, size, begin, end);
+
+		quickSort(array, size, begin, pivot - 1);
+		quickSort(array, size, pivot + 1, end);
+	}
 }
 
 /**
@@ -50,15 +78,12 @@ int *lomuto_partition(int *begin, int *end)
 
 void quick_sort(int *array, size_t size)
 {
-	int *pivot;
-
-	if (size < 2)
+	/*Array does not need to be sorted if null*/
+	if (!array || !size)
 	{
 		return;
 	}
 
-	pivot = lomuto_partition(array, array + size);
-
-	quick_sort(array, pivot - array);
-	quick_sort(pivot + 1, size - (pivot - array) - 1);
+	/*sort array using from start to end*/
+	quickSort(array, size, 0, size - 1);
 }

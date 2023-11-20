@@ -87,3 +87,45 @@ void shellSort(T a[], int n)
 		incr = (int) (incr / 2.2);
 	}
 }
+
+size_t lomuto_partition(int *array, size_t size, ssize_t begin, ssize_t end)
+{
+	int i, j, pivot = array[end];
+
+	for (i = j = begin; j < end; j++)
+	{
+		if (array[j] < pivot)
+		{
+			swap(array, size, &array[j], &array[i++]);
+		}
+		swap(array, size, &array[i], &array[end]);
+	}
+
+	return (i);
+}
+
+/**
+* swap - swaps two integers
+* @array: input array
+* @size: size of array
+* @a: first int
+* @b: second int
+*/
+void swap(int *array, size_t size, int *a, int *b)
+{
+	int temp;
+
+	if (a != b)
+	{
+		printf("Before swapping:\n");
+		print_array((const int *)array, size);
+		/*use temp  value to hold value*/
+		temp = *a;
+		/*asign b to a*/
+		*a = *b;
+		/*asign temp to b*/
+		*b = temp;
+		printf("After swapping:\n");
+		print_array((const int *)array, size);
+	}
+}
