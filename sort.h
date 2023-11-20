@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdbool.h>
+#include <unistd.h>
 
 
 /**
@@ -37,12 +38,12 @@ void insertion_sort_list(listint_t **list);
 void selection_sort(int *array, size_t size);
 
 /*Quick Sort*/
-void swap(int *array, size_t size, int *a, int *b);
 size_t lomuto_partition(int *array, size_t size, ssize_t begin, ssize_t end);
 void quickSort(int *array, size_t size, ssize_t begin, ssize_t end);
 void quick_sort(int *array, size_t size);
 
 /*Shell Sort*/
+size_t get_maximum_gap(size_t size);
 void shell_sort(int *array, size_t size);
 
 

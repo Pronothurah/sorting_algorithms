@@ -1,41 +1,53 @@
 #include "sort.h"
 
+/**
+* get_maximum_gap - gets maximum gap using Knuth's sequence
+* @size: size of array
+*
+* Return: gap size
+*/
+
+size_t get_maximum_gap(size_t size)
+{
+	size_t n;
+
+	n = 1;
+	while (n < size)
+	{
+		n = (n * 3) + 1;
+	}
+	return ((n - 1) / 3);
+}
+
+/**
+* shell_sort - sorts an array of integers in ascending order
+* using the Shell sort algorithm, using the Knuth sequence
+* @array: input of array
+* @size: size of array
+*/
 void shell_sort(int *array, size_t size)
 {
-    
-    size_t gap = 1;
-    size_t i, j;
+	size_t gap, i, j;
+	int temp;
 
-    while (gap <= size / 3)
-    {
-        gap = gap * 3 + 1;
-    }
+	if (!array || !size)
+	{
+		return;
+	}
 
-    while (gap > 0)
-    {
-        for (i = 0; i < size; i++)
-        {
-            if (i > 0)
-                printf(", ");
-            printf("%d", array[i]);
-        }
-        printf("\n");
+	for (gap = get_maximum_gap(size); gap; gap = (gap - 1) / 3)
+	{
+		for (i = gap; i < size; i++)
+		{
+			temp = array[i];
+			for (j = i; j > gap - 1 && array[j - gap] > temp; j -= gap)
+			{
+				array[j] = array[j - gap];
+			}
+			array[j] = temp;
+		}
+		print_array(array, size);
+	}
 
-        for (i = gap; i < size; i++)
-        {
-            int temp = array[i];
-            j = i;
-
-            while (j >= gap && array[j - gap] > temp)
-            {
-                array[j] = array[j - gap];
-                j -= gap;
-            }
-
-            array[j] = temp;
-        }
-
-        gap = (gap - 1) / 3;
-    }
 }
 

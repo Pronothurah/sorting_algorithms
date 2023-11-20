@@ -1,5 +1,4 @@
 #include "sort.h"
-#include <unistd.h>
 
 /**
 * lomuto_partition - partitions an array using the last item as pivot
