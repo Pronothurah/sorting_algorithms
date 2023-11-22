@@ -46,5 +46,9 @@ void quick_sort(int *array, size_t size);
 size_t get_maximum_gap(size_t size);
 void shell_sort(int *array, size_t size);
 
+/*cocktail sort*/
+void swap(listint_t **list, listint_t *a, listint_t *b);
+void cocktail_sort_list(listint_t **list);
+
 
 #endif /* SORT_H */
